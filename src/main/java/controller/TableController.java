@@ -6,7 +6,7 @@ import view.TableView;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TableController  {
+public class TableController {
 
     private Table tableModel;
     private TableView tableView;
@@ -49,6 +49,25 @@ public class TableController  {
         tableView.getTableView(tableModel.getTable());
     }
 
+//    public void updateTable() {
+//        int row = getPlayerRowNumber();
+//        int column = getPlayerColumnNumber();
+//        String value =getPlayerSign();
+//        String[][] arrTable=getTable();
+//        if ( arrTable[row][column].isEmpty()){
+//            arrTable[row][column] = value;
+//            userMadeMove=true;
+//        }else{
+//            System.out.println("Cell already occupied.Select different location");
+//        }
+//    }
+
+
+//    public void userMoveOnTable(String value, String[][] arr, Scanner scanner){
+//        do {
+//            insertValueToTable();
+//        }while (!userMadeMove);
+//    }
 
 
 
