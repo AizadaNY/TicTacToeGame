@@ -2,22 +2,34 @@ package model;
 
 public class Player {
 
-    private String playerName;
-    private String playerSign;
+    private String userName;
+    private String sign;
 
-    public String getPlayerName(){
-       return playerName;
+    public Player(String userName,String sign){
+        this.userName=userName;
+        this.sign=sign;
     }
 
-    public String getPlayerSign(){
-        return playerSign;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPlayerName(String playerName){
-        this.playerName=playerName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setPlayerSign(String playerSign){
-        this.playerSign=playerSign;
+    public String getSign() {
+        return sign;
     }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public void playerMove(){
+
+    }
+
+
+
 }
