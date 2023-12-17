@@ -1,9 +1,10 @@
 package model;
 
-public class Player {
+public class Player extends Board{
 
     private String userName;
     private String sign;
+
 
     public Player(String userName,String sign){
         this.userName=userName;
@@ -26,7 +27,14 @@ public class Player {
         this.sign = sign;
     }
 
-    public void playerMove(){
+    public void move(int row,int column){
+        while (getTableUpdated()) {
+            updateGameBoard(row, column, getSign());
+            if(getTableUpdated()){
+              int count=getMoveCount();
+              setMoveCount(count++);
+            }
+        }
 
     }
 

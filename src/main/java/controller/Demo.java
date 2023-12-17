@@ -9,20 +9,33 @@ public class Demo {
     public static void main(String[] args) {
         Board model=retriveGameBoard();
         BoardView view=new BoardView();
+        Player player1=new Player("Pl1", "X");
+        Player player2=new Player("Pl2","O");
+
 
         BoardController controller=new BoardController(model,view);
 
-        model.updateGameBoard(controller.getRowNumberFromUser(),controller.getColumnNumberFromUser(),"X");
-        model.updateGameBoard(controller.getRowNumberFromUser(),controller.getColumnNumberFromUser(),"O");
-        view.getGameBoard(model.getGameBoard());
+
+        int moveCount=0;
+        while (moveCount!=9) {
+            player1.move(controller.getRowNumberFromUser(player1.getUserName()),
+                    controller.getColumnNumberFromUser(player1.getUserName()));
+            controller.getView().getGameBoard(model.getGameBoard());
+
+            player2.move(controller.getRowNumberFromUser(player2.getUserName()),
+                    controller.getColumnNumberFromUser(player2.getUserName()));
+            controller.getView().getGameBoard(model.getGameBoard());
+
+        }
+
+
 
 
 
     }
 
     private static Board retriveGameBoard(){
-       String[][] array=new String[3][3];
-       Board board=new Board(array);
+        Board board=new Board(new String[3][3]);
        return board;
     }
 }
