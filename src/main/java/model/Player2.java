@@ -2,12 +2,12 @@ package model;
 
 import java.util.Scanner;
 
-public  class  Player {
+public class Player2 {
 
     private String name;
     private String sign;
 
-    public Player(String name,String sign) {
+    public Player2(String name,String sign) {
         this.name=name;
         this.sign=sign;
     }
@@ -36,7 +36,7 @@ public  class  Player {
             Scanner scanner=new Scanner(System.in);
             row=scanner.nextInt();
 
-        }catch (ArrayIndexOutOfBoundsException exception) {
+        }catch (Exception exception) {
 
         }
         return row;
@@ -48,14 +48,12 @@ public  class  Player {
             System.out.println(getName()+ " please provide column number");
             Scanner scanner=new Scanner(System.in);
             column=scanner.nextInt();
-        }catch (ArrayIndexOutOfBoundsException exception){
+        }catch (Exception exception){
 
         }
 
         return column;
     }
-
-
 
 
 }

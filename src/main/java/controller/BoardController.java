@@ -2,15 +2,32 @@ package controller;
 
 import model.Board;
 import model.Player;
+import model.Player2;
 import view.BoardView;
-import view.PlayerView;
-
-import java.util.Scanner;
 
 public class BoardController {
 
     private Board board;
-    private Player player;
+    private BoardView view;
+    private Boolean tableUpdated=false;
+    private int moveCount=0;
+
+
+    Player player = new Player("Mark", "X");
+    Player2 player2 = new Player2("Ari", "O");
+
+    public BoardController(Board board, BoardView view) {
+        this.board = board;
+        this.view = view;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 
     public BoardView getView() {
         return view;
@@ -20,40 +37,87 @@ public class BoardController {
         this.view = view;
     }
 
-    private BoardView view;
-    private PlayerView playerView;
 
-    Player player1=new Player("Pl1","X");
-    Player player2=new Player("Pl2", "O");
-    Board gameBoard=new Board(new String[3][3]);
-
-    public BoardController(Board board,BoardView view){
-        this.board=board;
-        this.view=view;
-
+    public Boolean getTableUpdated() {
+        return tableUpdated;
     }
 
-    public int getRowNumberFromUser(String playerName){
-        int rowNum=0;
+    public void setTableUpdated(Boolean tableUpdated) {
+        this.tableUpdated = tableUpdated;
+    }
 
+    public Boolean updateGameBoard(int row,int column,String value){
+
+        System.out.println("before method "+tableUpdated);
+        String[][] gameBoard =board.getGameBoard();
         try {
-            System.out.println(playerName+" row number");
-            Scanner scanner=new Scanner(System.in);
-            rowNum=scanner.nextInt();
-
-        }catch (Exception exception) {
-
-
+            if (gameBoard[row][column]==null||gameBoard[row][column].isEmpty()) {
+                gameBoard[row][column] = value;
+                setTableUpdated(true);
+                moveCount++;
+            }else{
+                setTableUpdated(false);
+            }
+        }catch (NullPointerException exception){
+            exception.printStackTrace();
         }
-        return rowNum;
+        System.out.println(tableUpdated);
+        return getTableUpdated();
     }
 
-    public int getColumnNumberFromUser(String playerName){
-        System.out.println(playerName+ " column number");
-        Scanner scanner=new Scanner(System.in);
-        int columnNum=scanner.nextInt();
-        return columnNum;
+    public void user1UpdatesBoard(){
+        setTableUpdated(false);
+        while (!getTableUpdated()) {
+            updateGameBoard(player.getRowNumberFromUser(),
+                    player.getColumnNumberFromUser(), player.getSign());
+            getGameBoardView();
+        }
+
     }
+
+    public void user2UpdatesBoard(){
+       setTableUpdated(false);
+        while (!getTableUpdated()) {
+            updateGameBoard(player2.getRowNumberFromUser(),
+                    player2.getColumnNumberFromUser(), player2.getSign());
+            getGameBoardView();
+        }
+    }
+
+    public void runGame(){
+        while (moveCount<=9||board.isPlayerWon()) {
+            user1UpdatesBoard();
+            board.getGameResult(player.getName(), player.getSign());
+            user2UpdatesBoard();
+            board.getGameResult(player2.getName(), player2.getSign());
+        }
+
+    }
+
+    public void getGameBoardView(){
+        view.getGameBoard(getBoard().getGameBoard());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
