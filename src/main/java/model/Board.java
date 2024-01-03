@@ -45,34 +45,28 @@ public class Board {
     }
 
 
-
-    String rowData="";
-    String columnData="";
-    String diogData="";
     public Boolean getGameResult(String name,String sign){
-        String match="";
-        switch(sign) {
-            case "X":
-             match="XXX";
-                break;
-            case "O":
-                match="OOO";
-                break;
-            default:
-
+       String[][] board=getGameBoard();
+       int size=board.length;
+       int rowMatchCount=0;
+       int columnMatchCount=0;
+        for (int i = 0; i < board.length; i++) {
+            String rowData=board[getRow()][i];
+            if(rowData==board[getRow()][getColumn()]){
+                rowMatchCount++;
+            }
+            String columnData=board[i][getColumn()];
+            if(columnData==board[getRow()][getColumn()]){
+                columnMatchCount++;
+            }
         }
-        String[][] board=getGameBoard();
-        rowData=board[getRow()][0]+board[getRow()][1]+board[getRow()][2].toUpperCase();
-        columnData=board[0][getColumn()]+board[1][getColumn()]+board[2][getColumn()].toUpperCase();
-
-        if(rowData==match||columnData==match){
+        if(rowMatchCount== board.length||columnMatchCount== board.length){
             setPlayerWon(true);
-            System.out.println(name+ " won the game");
-        }else if(columnData==match||columnData==match){
-            setPlayerWon(true);
-            System.out.println(name+ " won the game");
-
+        }else{
+            return false;
         }
+
+
 
       return isPlayerWon();
     }

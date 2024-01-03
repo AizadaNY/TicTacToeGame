@@ -1,4 +1,5 @@
 import controller.BoardController;
+import controller.BoardRandomController;
 import model.Board;
 import view.BoardView;
 
@@ -10,8 +11,8 @@ public class Game {
 
         Board model = getBoard();
         BoardView view = new BoardView();
-        BoardController boardController = new BoardController(model, view);
-
+//        BoardController boardController = new BoardController(model, view);
+        BoardRandomController boardController=new BoardRandomController(model, view);
 
         boardController.runGame();
 
