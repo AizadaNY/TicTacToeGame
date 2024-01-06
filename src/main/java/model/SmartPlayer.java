@@ -48,8 +48,31 @@ public class SmartPlayer {
         //move to next cell
     }
 
-    public void checkUserElements(){
-        //check what users made
+    public void checkUserElements(int row, int column,String[][] table){
+        //check user move
+        for (int i = 0; i < table.length ; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                if(table[row][column])
+            }
+        }
+
+    }
+
+    public void getNextValuesOfCell(String[][] table,int row, int column){
+        int count=0;
+        int blankRow;
+        int blankColumn;
+        for (int i = 0; i <table.length; i++) {
+            if(table[row][i]=="X"){
+                 count++;
+            }else{
+               blankRow=row;
+               blankColumn=i;
+            }
+            if(count==2){
+                table[row][i]="O";
+            }
+        }
     }
 
 
