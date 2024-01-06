@@ -30,13 +30,13 @@ public class SmartPlayer {
 
 
     public int getRowNumber(int bound){
-        int row=
+        int row=0;
 
         return row;
     }
 
     public int getColumnNumber(int bound){
-        int column=
+        int column=0;
 
         return column;
     }
@@ -52,7 +52,7 @@ public class SmartPlayer {
         //check user move
         for (int i = 0; i < table.length ; i++) {
             for (int j = 0; j < table[i].length; j++) {
-                if(table[row][column])
+
             }
         }
 
@@ -60,19 +60,22 @@ public class SmartPlayer {
 
     public void getNextValuesOfCell(String[][] table,int row, int column){
         int count=0;
-        int blankRow;
-        int blankColumn;
+        int blankRow=0;
+        int blankColumn=0;
         for (int i = 0; i <table.length; i++) {
-            if(table[row][i]=="X"){
-                 count++;
-            }else{
-               blankRow=row;
-               blankColumn=i;
-            }
-            if(count==2){
-                table[row][i]="O";
+            if (table[row][i] == "X") {
+                count++;
+            } else {
+                blankRow = row;
+                blankColumn = i;
             }
         }
+            if(count==2){
+                table[row][blankColumn]="O";
+            }else if(count==1){
+
+            }
+
     }
 
 
