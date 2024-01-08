@@ -58,12 +58,12 @@ public class SmartPlayer {
 
     }
 
-    public void getNextValuesOfCell(String[][] table,int row, int column){
+    public void checkRow(String[][] table,int row,String competitorSign){
         int count=0;
         int blankRow=0;
         int blankColumn=0;
         for (int i = 0; i <table.length; i++) {
-            if (table[row][i] == "X") {
+            if (table[row][i] ==competitorSign) {
                 count++;
             } else {
                 blankRow = row;
@@ -71,12 +71,35 @@ public class SmartPlayer {
             }
         }
             if(count==2){
-                table[row][blankColumn]="O";
+                table[row][blankColumn]=getSign();
             }else if(count==1){
 
             }
 
     }
+
+
+    public void checkColumn(String[][] table,int column,String competitorSign){
+        int count=0;
+        int blankRow=0;
+        int blankColumn=0;
+        for (int i = 0; i <table.length; i++) {
+            if (table[i][column] == competitorSign) {
+                count++;
+            } else {
+                blankColumn = column;
+                blankRow = i;
+            }
+        }
+        if(count==2){
+            table[blankRow][column]=getSign();
+        }else if(count==1){
+
+        }
+
+    }
+
+
 
 
 
