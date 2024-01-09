@@ -44,9 +44,9 @@ public class Board {
         this.gameBoard = gameBoard;
     }
 
-
+    String[][] board=getGameBoard();
     public Boolean getGameResult(String name,String sign){
-       String[][] board=getGameBoard();
+
        int size=board.length;
        int rowMatchCount=0;
        int columnMatchCount=0;
@@ -67,6 +67,18 @@ public class Board {
         }
 
 
+
+     //diogonal
+
+        for (int i = 0; i < getGameBoard().length; i++) {
+            if(row==column){
+             String sign1=board[i][i];
+            }else if(row+column==getGameBoard().length){
+                int k=board.length;
+                String sign1=board[k][i];
+                k--;
+            }
+        }
 
       return isPlayerWon();
     }
