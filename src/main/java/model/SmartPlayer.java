@@ -99,6 +99,31 @@ public class SmartPlayer {
 
     }
 
+    public void checkDiagonal(String[][] table,int row,int column,String competitorSign){
+        int count=0;
+        int blankRow=0;
+        int blankColumn=0;
+        for (int i = 0; i < table.length; i++) {
+              if(table[i][i]==competitorSign){
+                 count++;
+              }else{
+                blankColumn=i;
+                blankRow=i;
+              }
+            }
+
+        if(count==2){
+            table[blankRow][column]=getSign();
+        }else if(count==1){
+
+        }
+        }
+
+
+    }
+
+    //decide if assign sign of user should be only 1 for all of them
+
 
 
 
