@@ -47,82 +47,81 @@ public class SmartPlayer {
         //get user move
         //move to next cell
     }
-
-    public void checkUserElements(int row, int column,String[][] table){
-        //check user move
-        for (int i = 0; i < table.length ; i++) {
-            for (int j = 0; j < table[i].length; j++) {
-
+    int blankRow=0;
+    int blankColumn=0;
+    public void checkUserElements(String[][] table,int row,int column,String competitorSign){
+        int rowCount=0;
+        int columnCount=0;
+        int diagonalCount=0;
+        for (int i = 0; i < table.length; i++) {
+            //check row
+            if (table[row][i] ==competitorSign) {
+                rowCount++;
+            } else {
+                blankRow = row;
+                blankColumn = i;
             }
+            //column
+            if (table[i][column] == competitorSign) {
+                columnCount++;
+            } else {
+                blankColumn = column;
+                blankRow = i;
+            }
+
+            //diagonal
+            if(table[i][i]==competitorSign){
+                diagonalCount++;
+            }else{
+                blankColumn=i;
+                blankRow=i;
+            }
+
         }
+
 
     }
 
-    public void checkRow(String[][] table,int row,String competitorSign){
+    public int checkRow(String[][] table,int row,String competitorSign,int i){
         int count=0;
-        int blankRow=0;
-        int blankColumn=0;
-        for (int i = 0; i <table.length; i++) {
+
             if (table[row][i] ==competitorSign) {
                 count++;
             } else {
                 blankRow = row;
                 blankColumn = i;
             }
-        }
-            if(count==2){
-                table[row][blankColumn]=getSign();
-            }else if(count==1){
 
-            }
-
+            return count;
     }
 
 
-    public void checkColumn(String[][] table,int column,String competitorSign){
+    public int checkColumn(String[][] table,int column,String competitorSign,int i){
         int count=0;
-        int blankRow=0;
-        int blankColumn=0;
-        for (int i = 0; i <table.length; i++) {
+
             if (table[i][column] == competitorSign) {
                 count++;
             } else {
                 blankColumn = column;
                 blankRow = i;
             }
-        }
-        if(count==2){
-            table[blankRow][column]=getSign();
-        }else if(count==1){
-
-        }
-
+            return count;
     }
 
-    public void checkDiagonal(String[][] table,int row,int column,String competitorSign){
+    public int checkDiagonal(String[][] table,int row,int column,String competitorSign,int i){
         int count=0;
-        int blankRow=0;
-        int blankColumn=0;
-        for (int i = 0; i < table.length; i++) {
-              if(table[i][i]==competitorSign){
+
+             if(table[i][i]==competitorSign){
                  count++;
               }else{
                 blankColumn=i;
                 blankRow=i;
               }
-            }
 
-        if(count==2){
-            table[blankRow][column]=getSign();
-        }else if(count==1){
-
-        }
-        }
+        return count;
+}
 
 
-    }
-
-    //decide if assign sign of user should be only 1 for all of them
 
 
 
