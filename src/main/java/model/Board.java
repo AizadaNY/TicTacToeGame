@@ -44,48 +44,49 @@ public class Board {
         this.gameBoard = gameBoard;
     }
 
-    String[][] board=getGameBoard();
-    public Boolean getGameResult(String name,String sign) {
 
-        int size = board.length;
+    public void getGameResult() {
+
+        int boardLength = gameBoard.length;
         int rowMatchCount = 0;
         int columnMatchCount = 0;
-        for (int i = 0; i < board.length; i++) {
-            String rowData = board[getRow()][i];
-            if (rowData == board[getRow()][getColumn()]) {
+        int digMatchCount1=0;
+        int digMatchCount2=0;
+
+        String userSign=gameBoard[getRow()][getColumn()];
+        for (int i = 0; i < boardLength ; i++) {
+            String rowSign = gameBoard[getRow()][i];
+            if (rowSign ==userSign) {
                 rowMatchCount++;
             }
-            String columnData = board[i][getColumn()];
-            if (columnData == board[getRow()][getColumn()]) {
+            String columnSign = gameBoard[i][getColumn()];
+            if (columnSign == userSign) {
                 columnMatchCount++;
             }
             if (row == column) {
-                String sign1 = board[i][i];
+                String diogSign = gameBoard[i][i];
+                if (diogSign == userSign) {
+                    digMatchCount1++;
+                }
             }
-            if (row + column == getGameBoard().length) {
-                int k = board.length;
-                String sign1 = board[k][i];
+            if (row + column == boardLength -1) {
+                int k = boardLength -1;
+                String diogSign  = gameBoard[k][i];
+                if (diogSign == userSign) {
+                    digMatchCount2++;
+                }
                 k--;
             }
 
         }
-        if (rowMatchCount == board.length || columnMatchCount == board.length) {
+        if (rowMatchCount == boardLength  || columnMatchCount ==
+                boardLength ||digMatchCount1==boardLength ||digMatchCount2==boardLength ) {
             setPlayerWon(true);
         } else {
-            return false;
+            setPlayerWon(false);
         }
-          return isPlayerWon;
+
     }
 
-     //diogonal
 
-        public void getDiagonalResult(int i){
-            if(row==column){
-             String sign1=board[i][i];
-            }else if(row+column==getGameBoard().length){
-                int k=board.length;
-                String sign1=board[k][i];
-                k--;
-            }
-        }
 }

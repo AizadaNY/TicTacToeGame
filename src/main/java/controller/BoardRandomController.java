@@ -53,7 +53,9 @@ public class BoardRandomController {
         String[][] gameBoard =board.getGameBoard();
         try {
             if (gameBoard[row][column]==null||gameBoard[row][column].isEmpty()) {
-                gameBoard[row][column] = value;
+                board.setRow(row);
+                board.setColumn(column);
+                gameBoard[board.getRow()][board.getColumn()] = value;
                 setTableUpdated(true);
                 moveCount++;
             }else{
@@ -101,9 +103,17 @@ public class BoardRandomController {
     public void runGame(){
         while (moveCount<=9||board.isPlayerWon()) {
             user1UpdatesBoard();
-            board.getGameResult(player.getName(), player.getSign());
+            board.getGameResult();
+            if(board.isPlayerWon()==true){
+                System.out.println("Game over "+player.getName()+ " is the winner");
+                break;
+            }
             user2UpdatesBoard();
-            board.getGameResult(player2.getName(), player2.getSign());
+            board.getGameResult();
+            if(board.isPlayerWon()==true){
+                System.out.println("Game over "+player2.getName()+ " is the winner");
+                break;
+            }
         }
 
     }

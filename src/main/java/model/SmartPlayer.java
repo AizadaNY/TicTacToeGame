@@ -47,19 +47,25 @@ public class SmartPlayer {
         //get user move
         //move to next cell
     }
+
+
+
     int blankRow=0;
     int blankColumn=0;
+    int rowCount=0;
+    int columnCount=0;
+    int diagonal1Count=0;
+    int diagonal2Count=0;
+    int myRowCount=0;
     public void checkUserElements(String[][] table,int row,int column,String competitorSign){
-        int rowCount=0;
-        int columnCount=0;
-        int diagonalCount=0;
         for (int i = 0; i < table.length; i++) {
             //check row
             if (table[row][i] ==competitorSign) {
                 rowCount++;
-            } else {
-                blankRow = row;
-                blankColumn = i;
+            } else if(table[row][i] ==getSign()){
+                myRowCount++;
+            }else{
+                blankColumn=i;
             }
             //column
             if (table[i][column] == competitorSign) {
@@ -68,13 +74,24 @@ public class SmartPlayer {
                 blankColumn = column;
                 blankRow = i;
             }
+             if(row==column) {
+                 //diagonal
+                 if (table[i][i] == competitorSign) {
+                     diagonal1Count++;
+                 } else {
+                     blankColumn = i;
+                     blankRow = i;
+                 }
 
-            //diagonal
-            if(table[i][i]==competitorSign){
-                diagonalCount++;
-            }else{
-                blankColumn=i;
-                blankRow=i;
+             }else if(row+column==table.length-1){
+                 int k = table.length-1;
+                 k--;
+                 if (table[k][i] == competitorSign) {
+                     diagonal2Count++;
+                 } else {
+                     blankColumn = i;
+                     blankRow = i;
+                 }
             }
 
         }

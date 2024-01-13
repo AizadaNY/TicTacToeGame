@@ -3,9 +3,10 @@ package controller;
 import model.Board;
 import model.Player;
 import model.Player2;
+import model.SmartPlayer;
 import view.BoardView;
 
-public class BoardController {
+public class BoardSmartPlayerController {
 
     private Board board;
     private BoardView view;
@@ -14,9 +15,9 @@ public class BoardController {
 
 
     Player player = new Player("Mark", "X");
-    Player2 player2 = new Player2("Ari", "O");
+    SmartPlayer player2=new SmartPlayer("Smart Player", "O");
 
-    public BoardController(Board board, BoardView view) {
+    public BoardSmartPlayerController(Board board, BoardView view) {
         this.board = board;
         this.view = view;
     }
@@ -52,9 +53,7 @@ public class BoardController {
         String[][] gameBoard =board.getGameBoard();
         try {
             if (gameBoard[row][column]==null||gameBoard[row][column].isEmpty()) {
-                board.setRow(row);
-                board.setColumn(column);
-                gameBoard[board.getRow()][board.getColumn()] = value;
+                gameBoard[row][column] = value;
                 setTableUpdated(true);
                 moveCount++;
             }else{
@@ -77,68 +76,28 @@ public class BoardController {
 
     }
 
-    public void user2UpdatesBoard(){
-       setTableUpdated(false);
-        while (!getTableUpdated()) {
-            updateGameBoard(player2.getRowNumberFromUser(),
-                    player2.getColumnNumberFromUser(), player2.getSign());
-            getGameBoardView();
-        }
-    }
+//    public void user2UpdatesBoard(){
+//        setTableUpdated(false);
+//        while (!getTableUpdated()) {
+//            updateGameBoard(player2.getRowNumberFromUser(),
+//                    player2.getColumnNumberFromUser(), player2.getSign());
+//            getGameBoardView();
+//        }
+//    }
 
-    public void runGame(){
-        while (moveCount<=9||board.isPlayerWon()) {
-            user1UpdatesBoard();
-            board.getGameResult();
-           if(board.isPlayerWon()==true){
-               System.out.println("Game over "+player.getName()+ " is the winner");
-               break;
-           }
-            user2UpdatesBoard();
-            board.getGameResult();
-            if(board.isPlayerWon()==true){
-                System.out.println("Game over "+player2.getName()+ " is the winner");
-                break;
-            }
-        }
-
-    }
+//    public void runGame(){
+//        while (moveCount<=9||board.isPlayerWon()) {
+//            user1UpdatesBoard();
+//            board.getGameResult(player.getName(), player.getSign());
+//            user2UpdatesBoard();
+//            board.getGameResult(player2.getName(), player2.getSign());
+//        }
+//
+//    }
 
     public void getGameBoardView(){
         view.getGameBoard(getBoard().getGameBoard());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
