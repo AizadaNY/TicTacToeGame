@@ -11,8 +11,8 @@ public class Game {
 
         Board model = getBoard();
         BoardView view = new BoardView();
-//        BoardController boardController = new BoardController(model, view);
-      BoardRandomController boardController=new BoardRandomController(model, view);
+//       BoardController boardController = new BoardController(model, view);
+     BoardRandomController boardController=new BoardRandomController(model, view);
 
         boardController.runGame();
 

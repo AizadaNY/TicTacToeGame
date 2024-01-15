@@ -2,7 +2,6 @@ package controller;
 
 import model.Board;
 import model.Player;
-import model.Player2;
 import view.BoardView;
 
 public class BoardController {
@@ -14,7 +13,7 @@ public class BoardController {
 
 
     Player player = new Player("Mark", "X");
-    Player2 player2 = new Player2("Ari", "O");
+    Player player2 = new Player("Ari", "O");
 
     public BoardController(Board board, BoardView view) {
         this.board = board;

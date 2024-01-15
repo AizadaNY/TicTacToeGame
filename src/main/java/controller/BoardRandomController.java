@@ -2,7 +2,6 @@ package controller;
 
 import model.Board;
 import model.Player;
-import model.Player2;
 import model.RandomPlayer;
 import view.BoardView;
 
@@ -69,7 +68,7 @@ public class BoardRandomController {
     }
 
     public void user1UpdatesBoard(){
-        if (moveCount < 9) {
+        if (moveCount <= 9) {
             setTableUpdated(false);
             while (!getTableUpdated()) {
                 updateGameBoard(player.getRowNumberFromUser(),
@@ -108,12 +107,17 @@ public class BoardRandomController {
                 System.out.println("Game over "+player.getName()+ " is the winner");
                 break;
             }
+            if(moveCount>=9){
+                System.out.println("Board is full. Game Over");
+                break;
+            }
             user2UpdatesBoard();
             board.getGameResult();
             if(board.isPlayerWon()==true){
                 System.out.println("Game over "+player2.getName()+ " is the winner");
                 break;
             }
+
         }
 
     }

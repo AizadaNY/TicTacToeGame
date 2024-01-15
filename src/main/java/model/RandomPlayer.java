@@ -1,34 +1,14 @@
 package model;
 
 import java.util.Random;
-import java.util.Scanner;
 
-public class RandomPlayer {
 
-    private String name;
-    private String sign;
+public class RandomPlayer extends Player {
 
-    public RandomPlayer(String name,String sign) {
-        this.name=name;
-        this.sign=sign;
+
+    public RandomPlayer(String name, String sign) {
+        super(name, sign);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
-
 
     public int getRowNumber(int bound){
         int row=generateRandomNumber(bound);

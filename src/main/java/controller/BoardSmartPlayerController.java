@@ -2,7 +2,6 @@ package controller;
 
 import model.Board;
 import model.Player;
-import model.Player2;
 import model.SmartPlayer;
 import view.BoardView;
 
@@ -76,24 +75,6 @@ public class BoardSmartPlayerController {
 
     }
 
-//    public void user2UpdatesBoard(){
-//        setTableUpdated(false);
-//        while (!getTableUpdated()) {
-//            updateGameBoard(player2.getRowNumberFromUser(),
-//                    player2.getColumnNumberFromUser(), player2.getSign());
-//            getGameBoardView();
-//        }
-//    }
-
-//    public void runGame(){
-//        while (moveCount<=9||board.isPlayerWon()) {
-//            user1UpdatesBoard();
-//            board.getGameResult(player.getName(), player.getSign());
-//            user2UpdatesBoard();
-//            board.getGameResult(player2.getName(), player2.getSign());
-//        }
-//
-//    }
 
     public void getGameBoardView(){
         view.getGameBoard(getBoard().getGameBoard());
